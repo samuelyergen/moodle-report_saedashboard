@@ -116,7 +116,7 @@ $weekactivitychart->set_labels($actvtlabels);
 $accesscoursemean = new \core\chart_series('moyenne des accès par semaine', [$means[0]]);
 $accessduringexammean = new \core\chart_series('moyenne des accès en période d examen', [$means[1]]);
 $courseaccessmeanchart = new \core\chart_bar();
-$courseaccessmeanchart->set_title('access');
+$courseaccessmeanchart->set_title('Moyenne des accès aux cours');
 $courseaccessmeanchart->add_series($accesscoursemean);
 $courseaccessmeanchart->add_series($accessduringexammean);
 
@@ -134,8 +134,13 @@ echo '<div style="display: flex ; width: 100%">';
 echo '<div style="width: 100%;">'.'Cours : '. $coursename[$courseid]->fullname .'</div>';
 echo '<div style="width: 100%;">'.'Nombre de ressources disponibles : '. $nbresources .'</div>';
 echo '<div style="width: 100%;">'.'Nombre d activités disponibles : '. $nbactivities .'</div>';
-echo '<div style="width: 100%;">'.'Dernière resource créée ou modifiée : '. $lastresourcemodified[0] .'</div>';
-echo '<div style="width: 100%;">'.'Dernière activité créée ou modifiée : '. $lastactvtmodified[0] .'</div>';
+if(!empty($lastresourcemodified[0])){
+    echo '<div style="width: 100%;">'.'Dernière resource créée ou modifiée : '. $lastresourcemodified[0] .'</div>';
+}
+if(!empty($lastactvtmodified[0])){
+    echo '<div style="width: 100%;">'.'Dernière activité créée ou modifiée : '. $lastactvtmodified[0] .'</div>';
+}
+
 echo '</div>';
 echo '</br>';
 
@@ -199,6 +204,15 @@ echo '</div>';
 echo '</br>';
 echo '</br>';
 
+echo '</br>';
+echo '</br>';
+echo '<h4>'.'Accès au cours'.'</h4>';
+echo '<div style="display: flex ; width: 100%">';
+echo '<div style="width: 100%;">'.$OUTPUT->render($courseaccesschart).'</div>';
+echo '<div style="width: 100%;">'.$OUTPUT->render($courseaccessmeanchart).'</div>';
+echo '</div>';
+echo '</br>';
+echo '</br>';
 
 echo '</br>';
 echo '</br>';
@@ -218,19 +232,10 @@ echo '</div>';
 echo '</br>';
 echo '</br>';
 
-echo '</br>';
-echo '</br>';
-echo '<h4>'.'Accès au cours'.'</h4>';
-echo '<div style="display: flex ; width: 100%">';
-echo '<div style="width: 100%;">'.$OUTPUT->render($courseaccesschart).'</div>';
-echo '<div style="width: 100%;">'.$OUTPUT->render($courseaccessmeanchart).'</div>';
-echo '</div>';
-echo '</br>';
-echo '</br>';
 
 
 echo '<h4 style="padding-top: 80px">'.'Comparer les accès aux ressources/activités'.'</h4>';
-echo '<div style="display: flex;  justify-content: center; padding-top: 80px">';
+echo '<div style="display: flex;  justify-content: center; padding-top: 80px; padding-bottom: 80px">';
 echo '<div >';
 echo '<form action="index.php?course='.$courseid.' " method="post">';
 echo '<select name="resource1">';
@@ -247,16 +252,16 @@ for($i=0;$i<count($resourcesandactvt);$i++){
 echo '</select>';
 echo '</select>';
 echo '<select name="days">';
-echo '<option value="">'. 'Choisissez un jour' . '</option>';
+echo '<option value="">'. 'Choisissez une date' . '</option>';
 for($i=0;$i<count($week);$i++){
     $j = $i+1 ;
     echo '<option value="'.$j.'">'. $week[$i] . '</option>';
 }
 echo '</select>';
-echo '<input type="submit" name="Submit"  />';
+echo '<input type="submit" name="Submit" value="Comparer" />';
 echo '</form>';
 if(empty($_POST['resource1']) && empty($_POST['resource2'])  && empty($_POST['days'])){
-    echo '<p style="padding-top: 80px;">'.'<b>'.'Choisissez deux ressources/activités à comparer'.'</b>'.'</p>';
+    echo '<p style="padding-top: 80px;">'.'<b>'.'Choisissez deux ressources/activités à comparer et une date'.'</b>'.'</p>';
 }
 echo '</div>';
 echo '</div>';
@@ -272,8 +277,10 @@ if(!empty($_POST['resource1']) && !empty($_POST['resource2']) && !empty($_POST['
     $comparatorchart->add_series($comparator2);
     $comparatorchart->set_labels($hours);
 
-    echo '<div style="justify-content: center">';
+    echo '<div style="margin:0 auto; width: 80%">';
+    echo '<div >';
     echo $OUTPUT->render($comparatorchart) ;
+    echo '</div>';
     echo '</div>';
 }
 

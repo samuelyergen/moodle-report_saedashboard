@@ -100,7 +100,7 @@ class resources{
         $semesterbreak = '01-02-'.$currentyear ;
         if($thisday > $semesterbreak){
             $beginsemester = strtotime('02-02-'.$currentyear );
-            $endsemester = strtotime('15-07-'.$currentyear );
+            $endsemester = strtotime('15-09-'.$currentyear );
             $resourcewithcountarray = self::construct_count_array($objectarray, $idcourse, $beginsemester, $endsemester);
         }else {
             $beginsemester = strtotime('01-09-' . $currentyear);
