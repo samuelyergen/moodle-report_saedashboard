@@ -1,8 +1,8 @@
 # saedashboard #
 
-TODO Describe the plugin shortly here.
+This plugin add a report named "SAEDashboard" under "report" tab in each courses.
 
-TODO Provide more detailed description here.
+
 
 ## Installing via uploaded ZIP file ##
 
