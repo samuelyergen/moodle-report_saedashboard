@@ -6,6 +6,9 @@ TODO Provide more detailed description here.
 
 ## Installing via uploaded ZIP file ##
 
+INSTALL THE "SAELOG" PLUGIN BEFORE THIS ONE
+https://github.com/samuelyergen/moodle-logstore_saelog
+
 1. Log in to your Moodle site as an admin and go to _Site administration >
    Plugins > Install plugins_.
 2. Upload the ZIP file with the plugin code. You should only be prompted to add
