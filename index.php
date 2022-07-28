@@ -91,30 +91,30 @@ $means = courseaccesses::get_means($courseid, $creationdates[1], $weeknb);
 ///////////// CHART DECLARATION
 $semesterresources = new \core\chart_series('nombre d accès aux ressources',  $semesterserie);
 $semesterresourceschart = new \core\chart_line();
-$semesterresourceschart->set_title('Accès aux ressources semestriel');
+$semesterresourceschart->set_title('Accès semestriels aux ressources');
 $semesterresourceschart->add_series($semesterresources);
 $semesterresourceschart->set_labels($resourceslabels);
 
 $rw = new \core\chart_series('nombre d accès aux ressources', $resourcescountweek);
 $weekresourceschart = new \core\chart_line();
-$weekresourceschart->set_title('Accès aux ressources '.$week[0].' au '.$week[6]);
+$weekresourceschart->set_title('Accès aux ressources du '.$week[0].' au '.$week[6]);
 $weekresourceschart->add_series($rw);
 $weekresourceschart->set_labels($resourceslabels);
 
 $semesteractvt = new \core\chart_series('nombre d accès aux activités', $semesteractvtserie);
 $semesteractivitychart = new \core\chart_line();
-$semesteractivitychart->set_title('Accès aux activités semestre');
+$semesteractivitychart->set_title('Accès semestriels aux activités');
 $semesteractivitychart->add_series($semesteractvt);
 $semesteractivitychart->set_labels($actvtlabels);
 
 $weekactvt = new \core\chart_series('nombre d accès aux activités', $actvtcountweek);
 $weekactivitychart = new \core\chart_line();
-$weekactivitychart->set_title('Accès aux activités '.$week[0].' au '.$week[6]);
+$weekactivitychart->set_title('Accès aux activités du '.$week[0].' au '.$week[6]);
 $weekactivitychart->add_series($weekactvt);
 $weekactivitychart->set_labels($actvtlabels);
 
 $accesscoursemean = new \core\chart_series('moyenne des accès par semaine', [$means[0]]);
-$accessduringexammean = new \core\chart_series('moyenne des accès en période d examen', [$means[1]]);
+$accessduringexammean = new \core\chart_series('moyenne des accès en période d examens', [$means[1]]);
 $courseaccessmeanchart = new \core\chart_bar();
 $courseaccessmeanchart->set_title('Moyenne des accès aux cours');
 $courseaccessmeanchart->add_series($accesscoursemean);
@@ -122,7 +122,7 @@ $courseaccessmeanchart->add_series($accessduringexammean);
 
 $accessfinal = new \core\chart_series('nombre d accès au cours', $weekaccess);
 $courseaccesschart = new \core\chart_line();
-$courseaccesschart->set_title('Accès au cours '.$week[0].' au '.$week[6]);
+$courseaccesschart->set_title('Accès au cours du '.$week[0].' au '.$week[6]);
 $courseaccesschart->add_series($accessfinal);
 $courseaccesschart->set_labels($week);
 
